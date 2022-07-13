@@ -1,0 +1,38 @@
+# @package _group_
+
+defaults:
+  - model: null
+
+hydra:
+  run:
+    dir: ??? 
+  sweep:
+    dir: ${common_eval.results_path}
+    subdir: ${dataset.gen_subset}  
+
+distributed_training: 
+  distributed_num_procs: 1
+  distributed_world_size: 1
+
+task:
+  _name: hubert_pretraining
+  single_target: true
+  data: ???
+  normalize: ???
+  fine_tuning: true
+  max_sentences: 1
+          
+decoding:
+  type: viterbi
+  unique_wer_file: true
+common_eval:
+  results_path: ???
+  path: ???
+  post_process: letter
+  quiet: true
+  #generation:
+  #  nbest: 1
+  #  beam: 500
+dataset:
+  gen_subset: ???
+
